@@ -1,0 +1,8 @@
+stefanini:  
+  application:
+    displayName: '@name@'
+    version: '@version@'
+spring:
+  profiles:
+    active: ${ambiente:local}
+
