@@ -1,5 +1,7 @@
 package br.builders.cadastroclientesapi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +37,7 @@ public class ClienteController {
   
   
   @PostMapping
-  public ClienteDTO create(@RequestBody ClienteForm clienteForm){
+  public ClienteDTO create(@RequestBody @Valid  ClienteForm clienteForm){
 	  
 	Cliente response =  service.repository.save(service.converterToCliente(clienteForm));
 	return  service.converterToClienteDto(response);
