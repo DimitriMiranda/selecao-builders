@@ -8,12 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 @Entity
 public class Cliente {
 
@@ -23,7 +28,7 @@ public class Cliente {
     private Date dataNascimento;
     private String numeroDocumento;
 
-    @OneToMany()
+    @OneToMany(mappedBy = "cliente")
 	private List<Endereco> endereco = new ArrayList<>();
 
 }

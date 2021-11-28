@@ -8,19 +8,23 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.builders.cadastroclientesapi.domain.dto.EnderecoDTO;
 import br.builders.cadastroclientesapi.domain.model.Endereco;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter
+@Setter
 public class ClienteForm {
 
 	@NotBlank @NotNull @Size(min = 5, max = 50)
     private String nome;
-	@NotBlank @NotNull
-    private Date dataNascimento;
+	private Date dataNascimento;
 	@NotBlank @NotNull @Size(min = 5, max = 50)
     private String numeroDocumento;
     @Size(min=1)
-    private List<Endereco> endereco = new ArrayList<>();
+    private List<EnderecoDTO> endereco = new ArrayList<>();
 	
 }
