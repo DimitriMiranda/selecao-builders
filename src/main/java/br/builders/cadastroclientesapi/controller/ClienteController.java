@@ -50,7 +50,7 @@ public class ClienteController {
 
 
     @GetMapping
-    public ResponseEntity<Page<ClienteDTO>> list(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size= 10)	 Pageable pageable) {
+    public ResponseEntity<Page<ClienteDTO>> list(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size= 10)	  Pageable pageable) {
 
        List<ClienteDTO> clientes = new ArrayList<>();
          service.repository.findAll().forEach(cliente -> {
