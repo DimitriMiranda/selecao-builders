@@ -18,7 +18,7 @@ public interface ClienteMapper {
 	// Em caso de insert ID deve ser null
 
 
-			@Mapping(target = "cliente.id", ignore = true)
+			//@Mapping(target = "cliente.id", ignore = true)
 			//@Mapping(target = "cliente.nome", source = "nome")
 	        public  Cliente toCliente(ClienteForm clienteform);
 

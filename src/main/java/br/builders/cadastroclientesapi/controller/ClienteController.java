@@ -30,37 +30,50 @@ import java.util.Map;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-  private ClienteServiceImpl service;
+    private ClienteServiceImpl service;
 
-  ClienteController(ClienteServiceImpl service) {
+    ClienteController(ClienteServiceImpl service) {
 
-	  this.service = service;
-  }
-
-
+        this.service = service;
+    }
 
 
-  @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  public ClienteDTO create(@RequestBody @Valid  ClienteForm clienteForm){
-    Cliente response =  service.repository.save(service.converterToCliente(clienteForm));
-	return  service.converterToClienteDto(response);
- }
-
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ClienteDTO create(@RequestBody @Valid ClienteForm clienteForm) {
+        Cliente response = service.repository.save(service.converterToCliente(clienteForm));
+        return service.converterToClienteDto(response);
+    }
 
 
     @GetMapping
-    public ResponseEntity<Page<ClienteDTO>> list(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size= 10)	  Pageable pageable) {
+    public ResponseEntity<Page<ClienteDTO>> list(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable pageable) {
 
-       List<ClienteDTO> clientes = new ArrayList<>();
-         service.repository.findAll().forEach(cliente -> {
+        List<ClienteDTO> clientes = new ArrayList<>();
+        service.repository.findAll().forEach(cliente -> {
             clientes.add(service.converterToClienteDto(cliente));
         });
 
-         Page<ClienteDTO> page = new PageImpl<>(clientes);
-         return ResponseEntity.ok(page);
+        Page<ClienteDTO> page = new PageImpl<>(clientes);
+        return ResponseEntity.ok(page);
     }
 
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity update(@PathVariable("id") long id,
+                                 @Valid @RequestBody ClienteForm cliente) {
+
+        return service.repository.findById(id).map(record -> {
+
+            record = service.converterToCliente(cliente);
+            Cliente updated = service.repository.save(record);
+            ClienteDTO response = service.converterToClienteDto(updated);
+            return ResponseEntity.ok().body(response);
+
+        }).orElse(ResponseEntity.notFound().build());
+
+
+    }
 
 
 }

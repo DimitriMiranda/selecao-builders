@@ -13,6 +13,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name="cliente")
 public class Cliente {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +22,10 @@ public class Cliente {
     private Date dataNascimento;
     private String numeroDocumento;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(name = "cliente_id")
 	private List<Endereco> endereco = new ArrayList<>();
 
 }
