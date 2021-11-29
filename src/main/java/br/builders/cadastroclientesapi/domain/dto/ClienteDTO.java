@@ -16,6 +16,6 @@ public class ClienteDTO {
 	    private String nome;
 	    private Date dataNascimento;
 	    private String numeroDocumento;
-        private List<Endereco> endereco = new ArrayList<>();
+        private List<EnderecoDTO> endereco = new ArrayList<>();
 
 }
