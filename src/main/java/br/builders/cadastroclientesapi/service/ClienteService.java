@@ -1,16 +1,16 @@
 package br.builders.cadastroclientesapi.service;
 
+import br.builders.cadastroclientesapi.controller.form.ClienteForm;
+import br.builders.cadastroclientesapi.domain.dto.ClienteDTO;
 import br.builders.cadastroclientesapi.domain.model.Cliente;
 
+
+import java.util.Date;
+
 public interface ClienteService {
-	
-	
-//	public Cliente findByAll();
-//	public Cliente findById(Long id);
-//	public Cliente findByNome(String nome);
-//	public Cliente findByNumeroDocumento(String numeroDocumento); 
-//	public Cliente create(Cliente cliente);
-//	public void delelte(long id);
-//	public Cliente update(Cliente  cliente);
+
+    public ClienteDTO converterToClienteDto(Cliente cliente);
+    public Cliente converterToCliente(ClienteForm clienteForm);
+    public int calcularIdade(Date dataNascimento);
 	
 } 

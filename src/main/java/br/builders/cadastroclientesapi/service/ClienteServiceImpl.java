@@ -1,5 +1,7 @@
 package br.builders.cadastroclientesapi.service;
+
 import br.builders.cadastroclientesapi.domain.mapper.ClienteMapper;
+import br.builders.cadastroclientesapi.utils.CadastroClientesUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,35 +14,39 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
 
 @Data
 @Service
-public class ClienteServiceImpl  implements ClienteService {
-	
-
-   private ClienteMapper mapper;
-
-   public ClienteRepository repository;
+public class ClienteServiceImpl implements ClienteService {
 
 
+    private ClienteMapper mapper;
 
-	ClienteServiceImpl(ClienteRepository repository, ClienteMapper mapper ) {
-         this.repository = repository;
-		 this.mapper = mapper;
-	}
+    public ClienteRepository repository;
 
 
-	public ClienteDTO  converterToClienteDto(Cliente cliente) {
-		return mapper.toClienteDto(cliente);
-	}
+    ClienteServiceImpl(ClienteRepository repository, ClienteMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
-	public Cliente  converterToCliente(ClienteForm clienteForm) {
 
-		return mapper.toCliente(clienteForm);
-	}
-	
-	
-	
-	
+    public ClienteDTO converterToClienteDto(Cliente cliente) {
+        return mapper.toClienteDto(cliente);
+    }
+
+    public Cliente converterToCliente(ClienteForm clienteForm) {
+
+        return mapper.toCliente(clienteForm);
+    }
+
+
+    public int calcularIdade(Date dataNascimento) {
+
+        return CadastroClientesUtils.getDiferencaEntreAnos(dataNascimento);
+    }
+
+
 }

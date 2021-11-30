@@ -51,7 +51,10 @@ public class ClienteController {
 
         List<ClienteDTO> clientes = new ArrayList<>();
         service.repository.findAll().forEach(cliente -> {
-            clientes.add(service.converterToClienteDto(cliente));
+            ClienteDTO clienteDTO =  service.converterToClienteDto(cliente);
+            clienteDTO.setIdade(service.calcularIdade(cliente.getDataNascimento()));
+            clientes.add(clienteDTO);
+
         });
 
         Page<ClienteDTO> page = new PageImpl<>(clientes);

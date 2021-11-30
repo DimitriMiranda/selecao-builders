@@ -18,6 +18,7 @@ public class ClienteDTO {
 		@JsonFormat(pattern="dd/MM/yyyy")
 	    private Date dataNascimento;
 	    private String numeroDocumento;
+		private int idade;
         private List<EnderecoDTO> endereco = new ArrayList<>();
 
 }
