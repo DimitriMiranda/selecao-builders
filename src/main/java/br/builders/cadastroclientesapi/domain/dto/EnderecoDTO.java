@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class EnderecoDTO {
+public class
+EnderecoDTO {
 
     @JsonProperty(value ="id",required = false)
     private Long id;

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Cliente {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private String nome;
+    @DateTimeFormat(pattern="dd/MM/yyyy")
     private Date dataNascimento;
     private String numeroDocumento;
 
