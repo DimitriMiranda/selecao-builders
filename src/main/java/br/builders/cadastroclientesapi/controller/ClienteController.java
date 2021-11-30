@@ -66,6 +66,7 @@ public class ClienteController {
         return service.repository.findById(id).map(record -> {
 
             record = service.converterToCliente(cliente);
+            record.setId(id);
             Cliente updated = service.repository.save(record);
             ClienteDTO response = service.converterToClienteDto(updated);
             return ResponseEntity.ok().body(response);

@@ -16,7 +16,8 @@ public class Endereco {
     private long cep;
     private int numero;
     private String complemento;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", updatable = false )
     private Cliente cliente;
 
 }
