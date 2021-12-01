@@ -1,29 +1,21 @@
 package br.builders.cadastroclientesapi.controller;
 
-import javax.validation.Valid;
-
-import org.springframework.data.domain.PageImpl;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
-
 import br.builders.cadastroclientesapi.controller.form.ClienteForm;
 import br.builders.cadastroclientesapi.domain.dto.ClienteDTO;
 import br.builders.cadastroclientesapi.domain.model.Cliente;
 import br.builders.cadastroclientesapi.service.ClienteServiceImpl;
-
-
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @RestController
@@ -51,7 +43,7 @@ public class ClienteController {
 
         List<ClienteDTO> clientes = new ArrayList<>();
         service.repository.findAll().forEach(cliente -> {
-            ClienteDTO clienteDTO =  service.converterToClienteDto(cliente);
+            ClienteDTO clienteDTO = service.converterToClienteDto(cliente);
             clienteDTO.setIdade(service.calcularIdade(cliente.getDataNascimento()));
             clientes.add(clienteDTO);
 
@@ -78,6 +70,20 @@ public class ClienteController {
 
 
     }
+
+
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable long id) {
+
+        return service.repository.findById(id)
+                .map(record -> {
+                    service.repository.delete(record);
+                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+                }).orElse(ResponseEntity.notFound().build());
+
+
+    }
+
 
 
 }
