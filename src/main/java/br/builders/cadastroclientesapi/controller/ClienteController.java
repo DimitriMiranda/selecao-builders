@@ -4,6 +4,8 @@ import br.builders.cadastroclientesapi.controller.form.ClienteForm;
 import br.builders.cadastroclientesapi.domain.dto.ClienteDTO;
 import br.builders.cadastroclientesapi.domain.model.Cliente;
 import br.builders.cadastroclientesapi.service.ClienteServiceImpl;
+import org.springdoc.api.annotations.ParameterObject;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +41,7 @@ public class ClienteController {
 
 
     @GetMapping
-    public ResponseEntity<Page<ClienteDTO>> list(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable pageable) {
+    public ResponseEntity<Page<ClienteDTO>> list(@ParameterObject @PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10)  @RequestParam(required = false)  Pageable pageable) {
 
         List<ClienteDTO> clientes = new ArrayList<>();
         service.repository.findAll().forEach(cliente -> {
