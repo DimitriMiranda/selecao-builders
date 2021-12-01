@@ -5,7 +5,6 @@ import br.builders.cadastroclientesapi.domain.dto.ClienteDTO;
 import br.builders.cadastroclientesapi.domain.model.Cliente;
 import br.builders.cadastroclientesapi.service.ClienteServiceImpl;
 import org.springdoc.api.annotations.ParameterObject;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -35,24 +34,13 @@ public class ClienteController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ClienteDTO create(@RequestBody @Valid ClienteForm clienteForm) {
-        Cliente response = service.repository.save(service.converterToCliente(clienteForm));
-        return service.converterToClienteDto(response);
+        return service.create(clienteForm);
     }
 
 
     @GetMapping
-    public ResponseEntity<Page<ClienteDTO>> list(@ParameterObject @PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10)  @RequestParam(required = false)  Pageable pageable) {
-
-        List<ClienteDTO> clientes = new ArrayList<>();
-        service.repository.findAll().forEach(cliente -> {
-            ClienteDTO clienteDTO = service.converterToClienteDto(cliente);
-            clienteDTO.setIdade(service.calcularIdade(cliente.getDataNascimento()));
-            clientes.add(clienteDTO);
-
-        });
-
-        Page<ClienteDTO> page = new PageImpl<>(clientes);
-        return ResponseEntity.ok(page);
+    public ResponseEntity<Page<ClienteDTO>> list( @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) @RequestParam(required = false) Pageable pageable) {
+         return ResponseEntity.ok(service.list());
     }
 
 
@@ -60,32 +48,15 @@ public class ClienteController {
     public ResponseEntity update(@PathVariable("id") long id,
                                  @Valid @RequestBody ClienteForm cliente) {
 
-        return service.repository.findById(id).map(record -> {
-
-            record = service.converterToCliente(cliente);
-            record.setId(id);
-            Cliente updated = service.repository.save(record);
-            ClienteDTO response = service.converterToClienteDto(updated);
-            return ResponseEntity.ok().body(response);
-
-        }).orElse(ResponseEntity.notFound().build());
-
+    return service.update(id,cliente);
 
     }
 
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
-
-        return service.repository.findById(id)
-                .map(record -> {
-                    service.repository.delete(record);
-                    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-                }).orElse(ResponseEntity.notFound().build());
-
-
+      return service.delete(id);
     }
-
 
 
 }
