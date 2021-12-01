@@ -39,8 +39,8 @@ public class ClienteController {
 
 
     @GetMapping
-    public ResponseEntity<Page<ClienteDTO>> list( @PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) @RequestParam(required = false) Pageable pageable) {
-         return ResponseEntity.ok(service.list());
+    public ResponseEntity<Page<ClienteDTO>>list( @ParameterObject @PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable pageable) {
+         return ResponseEntity.ok(service.list(pageable));
     }
 
 

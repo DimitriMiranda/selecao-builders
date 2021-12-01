@@ -8,7 +8,10 @@ import br.builders.cadastroclientesapi.repository.ClienteRepository;
 import br.builders.cadastroclientesapi.utils.CadastroClientesUtils;
 import lombok.Data;
 import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -58,10 +61,10 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
 
-    public Page<ClienteDTO> list() {
+    public Page<ClienteDTO> list(Pageable pageable) {
 
         List<ClienteDTO> clientes = new ArrayList<>();
-        this.repository.findAll().forEach(cliente -> {
+        this.repository.findAll(pageable).forEach(cliente -> {
             ClienteDTO clienteDTO = this.converterToClienteDto(cliente);
             clienteDTO.setIdade(this.calcularIdade(cliente.getDataNascimento()));
             clientes.add(clienteDTO);
