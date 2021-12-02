@@ -1,5 +1,6 @@
 package br.builders.cadastroclientesapi.domain.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,9 +11,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
-public class ClienteDTO {
-	
-	
+public class ClienteDTO  implements Serializable {
+
+	public static final String CACHE_NAME = "ClienteDTO";
 		private Long id;
 	    private String nome;
 		@JsonFormat(pattern="dd/MM/yyyy")

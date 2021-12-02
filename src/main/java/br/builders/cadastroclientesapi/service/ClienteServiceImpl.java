@@ -7,6 +7,9 @@ import br.builders.cadastroclientesapi.domain.model.Cliente;
 import br.builders.cadastroclientesapi.repository.ClienteRepository;
 import br.builders.cadastroclientesapi.utils.CadastroClientesUtils;
 import lombok.Data;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 
 import org.springframework.data.domain.PageImpl;
@@ -16,7 +19,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,13 +59,14 @@ public class ClienteServiceImpl implements ClienteService {
         return CadastroClientesUtils.getDiferencaEntreAnos(dataNascimento);
     }
 
-
+    @CacheEvict(cacheNames = ClienteDTO.CACHE_NAME, allEntries = true)
     public ClienteDTO create(ClienteForm clienteForm) {
         Cliente response = this.repository.save(this.converterToCliente(clienteForm));
         return this.converterToClienteDto(response);
     }
 
 
+    @Cacheable(cacheNames = ClienteDTO.CACHE_NAME)
     public Page<ClienteDTO> list(Pageable pageable) {
 
         List<ClienteDTO> clientes = new ArrayList<>();
@@ -76,23 +82,25 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
 
+    @CacheEvict(cacheNames = ClienteDTO.CACHE_NAME, allEntries = true)
+    public ClienteDTO update(long id, ClienteForm cliente) {
 
-
-    public ResponseEntity update(long id, ClienteForm cliente) {
-
-        return this.repository.findById(id).map(record -> {
+        ClienteDTO clienteDTO = this.repository.findById(id).map(record -> {
 
             record = this.converterToCliente(cliente);
             record.setId(id);
             Cliente updated = this.repository.save(record);
             ClienteDTO response = this.converterToClienteDto(updated);
-            return ResponseEntity.ok().body(response);
+            return response;
 
-        }).orElse(ResponseEntity.notFound().build());
+        }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,""));
+
+        return clienteDTO;
 
 
     }
 
+    @CacheEvict(cacheNames = ClienteDTO.CACHE_NAME, allEntries = true)
     public ResponseEntity delete(long id) {
 
         return this.repository.findById(id)

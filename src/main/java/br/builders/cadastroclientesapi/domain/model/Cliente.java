@@ -1,5 +1,6 @@
 package br.builders.cadastroclientesapi.domain.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -15,7 +16,9 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="cliente")
-public class Cliente {
+public class Cliente  {
+
+//    public static final String CACHE_NAME = "Cliente";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

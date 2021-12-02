@@ -45,7 +45,8 @@ public class ClienteController {
 
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity update(@PathVariable("id") long id,
+    @ResponseBody
+    public ClienteDTO update(@PathVariable("id") long id,
                                  @Valid @RequestBody ClienteForm cliente) {
 
     return service.update(id,cliente);

@@ -15,7 +15,7 @@ import java.util.Date;
 
 public interface ClienteService {
 
-    public ResponseEntity update(long id, ClienteForm cliente);
+    public ClienteDTO update(long id, ClienteForm cliente);
     public ResponseEntity delete(long id);
     public Page<ClienteDTO> list(Pageable pageable);
     public ClienteDTO create(ClienteForm cliente);

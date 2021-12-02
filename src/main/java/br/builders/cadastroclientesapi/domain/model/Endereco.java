@@ -4,10 +4,15 @@ import javax.persistence.*;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
 @Entity
 @Table(name="endereco")
 public class Endereco {
+
+//    public static final String CACHE_NAME = "Endereco";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
