@@ -18,12 +18,10 @@ spring:
   cache:
     type: redis
     redis:
-      host: redis1
-      port: '6379'
-      password: '123456'
+      host: redis_cache
+      port: '63790'
 
 server:
-  port: 8080
-  error:
-    include-stacktrace: never
+  port: 8081
+
 

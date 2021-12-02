@@ -1,5 +1,5 @@
 FROM openjdk:11 
-EXPOSE 80:81
+EXPOSE 80:80
 WORKDIR /app
 
 # Copy maven executable to the image
