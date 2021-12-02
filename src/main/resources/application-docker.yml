@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://mysql-database17:3306/selecao_builders?createDatabaseIfNotExist=true
+    password: spring
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+  cache:
+    type: redis
+    redis:
+      host: redis1
+      port: '6379'
+      password: '123456'
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+

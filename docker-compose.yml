@@ -12,12 +12,14 @@ services:
     restart: always
 
   cache:
-    image: "redis"
+    image: redis
+    command: redis-server --requirepass 123456 --appendonly yes
+    hostname: redis
+    container_name: redis1
     ports:
       - "6379:6379"
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    volumes:
+      - /home/duducp/Redis:/var/lib/postgresql/data
 
 
 
@@ -29,7 +31,7 @@ services:
       context: .                          #docker file path (. means root directory)
       dockerfile: Dockerfile              #docker file name
     ports:
-      - "8081:8080"                       #docker containter port with your os port
+      - "8080:8080"                       #docker containter port with your os port
     restart: always
 
     depends_on:                           #define dependencies of this app
@@ -42,6 +44,7 @@ services:
               "spring.datasource.password": "spring",
               "spring.datasource.driver-class-name": "com.mysql.jdbc.Driver",
               "spring.mvc.pathpattern.matching-strategy": "ANT_PATH_MATCHER"
+
         }'
         
         

@@ -19,4 +19,4 @@ RUN ./mvnw dependency:go-offline -B
 
 RUN ./mvnw package -DskipTests
 RUN ls -al
-ENTRYPOINT ["java","-jar" ,"target/cadastro-clientes-api-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar", "-Dspring.profiles.active=docker" ,"target/cadastro-clientes-api-0.0.1-SNAPSHOT.jar"]
