@@ -1,5 +1,8 @@
 package br.builders.cadastroclientesapi.utils;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
+import java.security.SecureRandom;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -33,10 +36,24 @@ public class CadastroClientesUtils {
     }
 
 
-//    public static void main(String[] args) {
-//
-//
-//    }
+
+    public  static  String generatedString(int tamanho, boolean letras, boolean numeros) {
+
+        String generatedString = RandomStringUtils.random(tamanho, letras, numeros);
+
+        return generatedString;
+    }
+
+
+
+    public static  int generatedInt(){
+
+
+        SecureRandom secureRandom = new SecureRandom();
+
+        return secureRandom.nextInt();
+    }
+
 
 
 }

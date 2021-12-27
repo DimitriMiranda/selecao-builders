@@ -22,6 +22,6 @@ spring:
       port: '63790'
 
 server:
-  port: 8081
+  port: 8080
 
 
