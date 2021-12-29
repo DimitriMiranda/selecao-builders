@@ -16,7 +16,7 @@ docker-compose up --builder
 ```ts
 Via postman, entrar na pasta postman e importar o arquivo na sua ferramenta restclient 
 // or
-pode ser testado os contratos via swagger:
+pode ser testado usando os contratos via swagger:
 http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
 
 ```
