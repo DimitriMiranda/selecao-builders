@@ -1,4 +1,4 @@
-FROM openjdk:11 
+FROM openjdk:11
 EXPOSE 80:80
 WORKDIR /app
 
@@ -15,7 +15,6 @@ COPY ./pom.xml ./pom.xml
 
 RUN chmod 755 /app/mvnw
 
-RUN ./mvnw dependency:go-offline -B
 
 RUN ./mvnw package -DskipTests
 RUN ls -al

@@ -14,9 +14,10 @@ services:
 
   cache:
     image: "redis"
-    container_name: redis_cache
+    container_name: redis1
     ports:
-      - "63790:63790"
+      - "6379:6379"
+    restart: always
 
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
@@ -27,7 +28,7 @@ services:
   #service 3: definition of your spring-boot app
   customerservice:                        #it is just a name, which will be used only in this file.
     image: property-service               #name of the image after dockerfile executes
-    container_name: property-service-app17  #name of the container created from docker image
+    container_name: api  #name of the container created from docker image
     build:
       context: .                          #docker file path (. means root directory)
       dockerfile: Dockerfile              #docker file name
@@ -36,9 +37,13 @@ services:
 
     restart: always
 
+    environment:
+       SPRING_REDIS_HOST: cache
+       SPRING_REDIS_PORT: 6379
     depends_on:                           #define dependencies of this app
       - db                                #dependency name (which is defined with this name 'db' in this file earlier)
       - cache
+
 
 
 
