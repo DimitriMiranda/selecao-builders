@@ -1,11 +1,30 @@
-# selecao-builders
-Teste para seleção desenvolvedor java 
-
-Para executar rode: 
-
-* recomendo iniciar antes a imagem  redis:
-* docker run -d -p 6379:6379 -i -t redis:3.2.5-alpine
-
-docker-compose up
+#  Cadastro de Clientes
 
 
+Pequeno projeto com um cadastro de clientes para seleção desenvolvedor JAVA 
+## Usage
+
+- Excutando o projeto
+
+```sh
+docker-compose up --builder
+
+```
+
+- Testando a aplicação
+
+```ts
+Via postman, entrar na pasta postman e importar o arquivo na sua ferramenta restclient 
+// or
+pode ser testado os contratos via swagger:
+http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config
+
+```
+
+
+
+
+## License
+
+Copyright (c) 2021 Dimitri Miranda. All rights reserved.
+Licensed under the [MIT](LICENSE) License.

@@ -1,0 +1,159 @@
+{
+	"id": "22f34d13-a3b4-3265-f498-0e455c9050bb",
+	"name": "selecao-builders",
+	"description": "",
+	"order": [
+		"c90cf4cb-f26c-30c2-02e5-23f2b716cc56",
+		"7daf9f75-8c2f-1f69-1196-2965c14e70d5",
+		"e170aa04-2b52-bbe3-37e1-6b68feb8d8b9",
+		"ecce27a9-ea49-b322-ec5b-64ddb190af9e"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1638133803948,
+	"owner": "4930185",
+	"public": false,
+	"requests": [
+		{
+			"id": "7daf9f75-8c2f-1f69-1196-2965c14e70d5",
+			"headers": "accept: */*\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "accept",
+					"value": "*/*",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/clientes",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "22f34d13-a3b4-3265-f498-0e455c9050bb",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Listagem - com paginação",
+			"description": "Generated from a curl request: \ncurl -X POST \\\"http://localhost:8080/clientes\\\" -H  \\\"accept: */*\\\" -H  \\\"Content-Type: application/json\\\" -d \\\"{\\\\\"nome\\\\\":\\\\\"string\\\\\",\\\\\"dataNascimento\\\\\":\\\\\"2021-11-28T23:46:32.297Z\\\\\",\\\\\"numeroDocumento\\\\\":\\\\\"string\\\\\",\\\\\"endereco\\\\\":[{\\\\\"id\\\\\":0,\\\\\"rua\\\\\":\\\\\"string\\\\\",\\\\\"cep\\\\\":0,\\\\\"numero\\\\\":0,\\\\\"complemento\\\\\":\\\\\"string\\\\\"}]}\\\"",
+			"descriptionFormat": "html",
+			"time": 1638219434675,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n   \"nome\":\"Dimitri Miranda\",\n   \"dataNascimento\":\"2021-11-21T23:46:32.297Z\",\n   \"numeroDocumento\":\"01380643503\",\n   \"endereco\":[\n      {\n         \n         \"rua\":\"Rua Machado monteiro\",\n         \"cep\":40455160,\n         \"numero\":7,\n         \"complemento\":\"Fundos\"\n      }\n   ]\n}"
+		},
+		{
+			"id": "c90cf4cb-f26c-30c2-02e5-23f2b716cc56",
+			"headers": "accept: */*\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "accept",
+					"value": "*/*",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/clientes",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "22f34d13-a3b4-3265-f498-0e455c9050bb",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Cadastrar",
+			"description": "Generated from a curl request: \ncurl -X POST \\\"http://localhost:8080/clientes\\\" -H  \\\"accept: */*\\\" -H  \\\"Content-Type: application/json\\\" -d \\\"{\\\\\"nome\\\\\":\\\\\"string\\\\\",\\\\\"dataNascimento\\\\\":\\\\\"2021-11-28T21:07:31.170Z\\\\\",\\\\\"numeroDocumento\\\\\":\\\\\"string\\\\\",\\\\\"endereco\\\\\":[{\\\\\"id\\\\\":0,\\\\\"rua\\\\\":\\\\\"string\\\\\",\\\\\"cep\\\\\":0,\\\\\"numero\\\\\":0,\\\\\"complemento\\\\\":\\\\\"string\\\\\"}]}\\\"",
+			"descriptionFormat": "html",
+			"time": 1638219346537,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": ""
+		},
+		{
+			"id": "e170aa04-2b52-bbe3-37e1-6b68feb8d8b9",
+			"headers": "accept: */*\nContent-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "accept",
+					"value": "*/*",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/clientes/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "PUT",
+			"collectionId": "22f34d13-a3b4-3265-f498-0e455c9050bb",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Ediçao",
+			"description": "Generated from a curl request: \ncurl -X PUT \\\"http://localhost:8080/clientes/1\\\" -H  \\\"accept: */*\\\" -H  \\\"Content-Type: application/json\\\" -d \\\"{\\\\\"nome\\\\\":\\\\\"Maria\\\\\",\\\\\"dataNascimento\\\\\":\\\\\"2021-11-29T23:23:27.217Z\\\\\",\\\\\"numeroDocumento\\\\\":\\\\\"string\\\\\",\\\\\"endereco\\\\\":[{\\\\\"id\\\\\":1,\\\\\"rua\\\\\":\\\\\"string\\\\\",\\\\\"cep\\\\\":0,\\\\\"numero\\\\\":0,\\\\\"complemento\\\\\":\\\\\"string\\\\\"}]}\\\"\n",
+			"descriptionFormat": "html",
+			"time": 1638240456537,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": " {\n            \"id\": 2,\n            \"nome\": \"teste\",\n            \"dataNascimento\": \"01/10/1992\",\n            \"numeroDocumento\": \"0131111\",\n            \"idade\": 29,\n            \"endereco\": [\n                {\n                    \"rua\": \"Barra\",\n                    \"cep\": 455,\n                    \"numero\": 4444,\n                    \"complemento\": \"fundos\",\n                    \"id\": 3\n                }\n            ]\n        }"
+		},
+		{
+			"id": "ecce27a9-ea49-b322-ec5b-64ddb190af9e",
+			"headers": "accept: */*\n",
+			"headerData": [
+				{
+					"key": "accept",
+					"value": "*/*",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/clientes/2",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "DELETE",
+			"collectionId": "22f34d13-a3b4-3265-f498-0e455c9050bb",
+			"data": [],
+			"dataMode": "params",
+			"name": "http://localhost:8080/clientes/1",
+			"description": "Generated from a curl request: \ncurl -X DELETE \\\"http://localhost:8080/clientes/1\\\" -H  \\\"accept: */*\\\"",
+			"descriptionFormat": "html",
+			"time": 1638385344076,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
