@@ -7,7 +7,7 @@ Pequeno projeto com um cadastro de clientes para seleção desenvolvedor JAVA
 - Excutando o projeto
 
 ```sh
-docker-compose up --builder
+docker-compose up --build
 
 ```
 
